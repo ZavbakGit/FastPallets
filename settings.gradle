@@ -1,0 +1,1 @@
+include ':app', ':barcode', ':preference', ':netreqest', ':database', ':dialogreadbarcode'
