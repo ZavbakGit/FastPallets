@@ -1,6 +1,7 @@
 package `fun`.gladkikh.fastpallets.di
 
 
+import `fun`.gladkikh.fastpallets.helpers.DialogReadBarcodeHelper
 import android.support.v7.app.AppCompatActivity
 import com.gladkikh.mylibrary.BarcodeHelper
 import com.gladkikh.mylibrary.IBarcodeHelper
@@ -23,9 +24,9 @@ class ActivityModule(private val activity: AppCompatActivity) {
         App.appComponent.providePreferenceHelper().getPass()
     )
 
-//    @ActivityScope
-//    @Provides
-//    fun provideDialogReadBarcodeHelper(): DialogReadBarcodeHelper = DialogReadBarcodeHelper(activity)
+    @ActivityScope
+    @Provides
+    fun provideDialogReadBarcodeHelper(): DialogReadBarcodeHelper = DialogReadBarcodeHelper(activity)
 
 }
 

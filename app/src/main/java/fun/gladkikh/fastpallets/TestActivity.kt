@@ -1,25 +1,28 @@
 package `fun`.gladkikh.fastpallets
 
-import `fun`.gladkikh.fastpallets.di.ActivityComponent
-import `fun`.gladkikh.fastpallets.di.ActivityModule
 import `fun`.gladkikh.fastpallets.di.App
+import `fun`.gladkikh.fastpallets.helpers.DialogReadBarcodeHelper
+import `fun`.gladkikh.fastpallets.mvp.presenters.TestActivityPresenter
+import `fun`.gladkikh.fastpallets.mvp.view.TestActivityView
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import com.arellomobile.mvp.MvpAppCompatActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
 import com.gladkikh.mylibrary.BarcodeHelper
-import com.gladkikh.mylibrary.IBarcodeHelper
 import com.gladkikh.netreqest.NetHelper
 import com.gladkikh.preference.IPreferenceHelper
 import com.gladkikh.preference.PreferenceHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.test_activity_main.*
 import javax.inject.Inject
 
 
-class TestActivity : AppCompatActivity() {
+class TestActivity : MvpAppCompatActivity(), TestActivityView {
+
+    @InjectPresenter
+    lateinit var presenter: TestActivityPresenter
 
 
     @Inject
@@ -34,8 +37,8 @@ class TestActivity : AppCompatActivity() {
     @Inject
     lateinit var barcodeHelper: BarcodeHelper
 
-//    @Inject
-//    lateinit var barcodeDialogReadBarcodeHelper: DialogReadBarcodeHelper
+    @Inject
+    lateinit var barcodeDialogReadBarcodeHelper: DialogReadBarcodeHelper
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,14 +52,15 @@ class TestActivity : AppCompatActivity() {
 
         barcodeHelper.getDataFlowable()
             .subscribe {
-                Toast.makeText(
-                    this, "Активити получило $it",
-                    Toast.LENGTH_SHORT
-                ).show()
+//                Toast.makeText(
+//                    this, "Активити получило $it",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+                presenter.onScanBarcode(it)
             }
 
         tv_barcode_dialog.setOnClickListener {
-            //barcodeDialogReadBarcodeHelper.showDialog()
+            barcodeDialogReadBarcodeHelper.showDialog()
         }
 
 
