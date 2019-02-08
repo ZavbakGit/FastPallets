@@ -21,14 +21,8 @@ class MainActivity : BaseActivity(), MainView {
         presenter.onBackPressed()
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     override fun getIdConteiner()= R.id.conteiner_frame
-
     override fun getNavigator() = SupportAppNavigator(this, getIdConteiner())
-
     override fun getLayout() = R.layout.activity_main
 
 }

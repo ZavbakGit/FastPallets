@@ -7,7 +7,7 @@ import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 @InjectViewState
-class MainActivityPresenter(val router: Router):BasePresenter<MainView>() {
+class MainActivityPresenter(router: Router) :BasePresenter<MainMenuView>(router) {
 
     @Inject
     lateinit var screens: Screens
@@ -19,10 +19,6 @@ class MainActivityPresenter(val router: Router):BasePresenter<MainView>() {
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         router.replaceScreen(screens.getMainMenuScreen())
-    }
-
-    fun onBackPressed() {
-       router.exit()
     }
 
 }

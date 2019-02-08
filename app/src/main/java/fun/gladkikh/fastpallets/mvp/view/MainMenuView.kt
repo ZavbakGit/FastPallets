@@ -13,4 +13,7 @@ interface MainMenuView:MvpView {
 
     @StateStrategyType(value = OneExecutionStateStrategy::class)
     fun startTestActivity()
+
+    @StateStrategyType(value = OneExecutionStateStrategy::class)
+    fun startPallet()
 }

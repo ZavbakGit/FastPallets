@@ -49,16 +49,6 @@ class TestActivity : MvpAppCompatActivity(), TestActivityView {
         setContentView(R.layout.test_activity_main)
 
 
-
-        barcodeHelper.getDataFlowable()
-            .subscribe {
-//                Toast.makeText(
-//                    this, "Активити получило $it",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-                presenter.onScanBarcode(it)
-            }
-
         tv_barcode_dialog.setOnClickListener {
             barcodeDialogReadBarcodeHelper.showDialog()
         }
@@ -76,8 +66,6 @@ class TestActivity : MvpAppCompatActivity(), TestActivityView {
                 Toast.LENGTH_SHORT
             ).show()
         }
-
-
 
 
         tv_rest_show.setOnClickListener {
@@ -98,6 +86,10 @@ class TestActivity : MvpAppCompatActivity(), TestActivityView {
                             Toast.LENGTH_SHORT
                         ).show()
                     })
+
+        }
+
+        tv_show_pallet.setOnClickListener {
 
         }
 
